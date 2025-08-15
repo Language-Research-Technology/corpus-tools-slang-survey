@@ -1,0 +1,22 @@
+{
+  "name": "corpus-tools-slang-survey",
+  "version": "1.0.0",
+  "description": "Corpus tool for creating an OCFL repository for the Slang Survey data.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Language-Research-Technology/corpus-tools-slang-survey.git"
+  },
+  "scripts": {
+    "test": "npx mocha"
+  },
+  "private": true,
+  "dependencies": {
+    "jsonld": "^8.3.3",
+    "language-data-commons-vocabs": "github:Language-Research-Technology/language-data-commons-vocabs",
+    "oni-ocfl": "github:Language-Research-Technology/oni-ocfl#v1.7"
+  },
+  "devDependencies": {
+    "mocha": "^11.7.1"
+  }
+}
