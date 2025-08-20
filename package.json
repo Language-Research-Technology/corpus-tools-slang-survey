@@ -14,7 +14,8 @@
   "dependencies": {
     "jsonld": "^8.3.3",
     "language-data-commons-vocabs": "github:Language-Research-Technology/language-data-commons-vocabs",
-    "oni-ocfl": "github:Language-Research-Technology/oni-ocfl#v1.7"
+    "oni-ocfl": "github:Language-Research-Technology/oni-ocfl#v1.7",
+    "ro-crate-excel": "github:Language-Research-Technology/ro-crate-excel"
   },
   "devDependencies": {
     "mocha": "^11.7.1"
