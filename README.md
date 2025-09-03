@@ -20,29 +20,27 @@ npm install
 
 ## Usage
 
-Base data:
-ro-crate-metadata.json
+Head record data used to build the initial RO-Crate format:
+- `data/ro-crate-metadata.json`
 
-The corpus tool expects the following data:
-- `ro-crate-metadata-slang-survey.xlsx`
+The corpus tool expects the following data in a `data` folder:
+- `ro-crate-metadata-slang-survey.xlsx` containing the metadata in RO-Crate compatible format
 - `CSV` folder with the 14 `.csv` files
-- Original spreadsheet data for the Slang Survey
+- Original data for the Slang Survey
 
 Create a file named `make_run.sh` containing the following data:
 
 ```
 #!/usr/bin/env bash
 
-make BASE_DATA_DIR=<base path>/slang-survey \
+make BASE_DATA_DIR=data \
  REPO_OUT_DIR=/opt/storage/oni/ocfl \
  REPO_SCRATCH_DIR=/opt/storage/oni/scratch-ocfl \
  BASE_TMP_DIR=temp \
  NAMESPACE=slang-survey \
  CORPUS_NAME=slang-survey \
- DATA_DIR=<base path>/slang-survey \
+ DATA_DIR=data \
 ```
-
-Update the `<base path>` sections to the appropriate locations for your local installation.
 
 Running this file using `bash make_run.sh` (or appropriate command) will generate an RO-Crate for the corpus.
 

@@ -18,23 +18,25 @@ async function main() {
   corpus.crate.root['@id'] = arcpId;
   corpus.crate.addProfile(languageProfileURI("Collection"));
   const repositoryObjects = [];
-  
+  const researchParticipants = [];
+
   for (let item of corpus.crate.getGraph()) {
     const itemType = item['@type'];
     if (itemType.includes('RepositoryObject')) {
       repositoryObjects.push(item);
     }
-    if (itemType.includes('Person')) {
-      //TODO extract postcode, to use to match to location and polygon data
-      // console.log(`PersonID: ${item['@id']}, CurrentLocation: ${item['arcp://name,custom/terms#currentLocation']}, ChildhoodLocation: ${item['arcp://name,custom/terms#childhoodLocation']}`)
+    if (itemType.includes('Person') && item['custom:currentLocation']) {
+      researchParticipants.push(item);
     }
   }
+
+  // ARCP IDs, conformsTo and hasPart for repository objects
   for (let item of repositoryObjects) {
     const curPath = item['@id'].replace('#', '');
     // Mint a new ARCP ID with the current path
     const colObj = collector.newObject();
     colObj.mintArcpId(curPath);
-    // Get the root object in the new Crate and update it
+    // Get the root object in the new crate and update it
     const root = colObj.crate.root;
     // Set the conformsTo property
     root['conformsTo'] = { '@id': languageProfileURI('Object') };
@@ -42,6 +44,17 @@ async function main() {
     item['@id'] = root['@id'];
     item['conformsTo'] = root['conformsTo'];
     item['hasPart'] = item['ldac:mainText']; // hasPart is identical to ldac:mainText
+  }
+
+  // ARCP IDs for research participants
+  for (let item of researchParticipants) {
+    const curPath = item['@id'].replace('#', 'researchParticipant/');
+    // Mint a new ARCP ID with the current path
+    const colObj = collector.newObject();
+    colObj.mintArcpId(curPath);
+    // Get the root object in the new crate and update it
+    const root = colObj.crate.root;
+    item['@id'] = root['@id'];
   }
 
   await corpus.addToRepo();
