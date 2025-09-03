@@ -14,6 +14,7 @@ CORPUS_NAME=default
 DATA_DIR=${BASE_DATA_DIR}/override
 TEMP_DIR=${BASE_TMP_DIR}
 TEMPLATE_DIR=${BASE_DATA_DIR}
+MODEFILE=https://language-research-technology.github.io/ro-crate-modes/modes/comprehensive-ldac.json
 DEBUG=false
 
 .DEFAULT_GOAL := repo
@@ -26,7 +27,8 @@ repo :
 		-d "${DATA_DIR}" \
 		-D ${DEBUG} \
 		-x "${BASE_DATA_DIR}"/ro-crate-metadata-slang-survey.xlsx \
-		-p "${TEMP_DIR}" -z "${REPO_SCRATCH_DIR}"
+		-p "${TEMP_DIR}" -z "${REPO_SCRATCH_DIR}" \
+		--vm "${MODEFILE}"
 
 
 clean :
