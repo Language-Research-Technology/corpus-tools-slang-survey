@@ -41,7 +41,7 @@ async function main() {
     // Replace the old @id and conformsTo in the object with the new one
     item['@id'] = root['@id'];
     item['conformsTo'] = root['conformsTo'];
-    item['hasPart'] = item['ldac:indexableText']; // hasPart is identical to ldac:indexableText
+    item['hasPart'] = item['ldac:mainText']; // hasPart is identical to ldac:mainText
   }
 
   await corpus.addToRepo();
