@@ -3,16 +3,23 @@ const roCrateExcel = require('ro-crate-excel');
 const { languageProfileURI, Languages, Vocab } = require('language-data-commons-vocabs');
 
 async function main() {
-  const collector = await Collector.create(); // Get all the paths etc from commandline
-  // This is the main crate
+  const collector = await Collector.create(); 
+  const corpus = collector.newObject(collector.templateCrateDir);
 
+  const workbook = new roCrateExcel.Workbook();
+  await workbook.loadExcel(collector.templateCrateDir + '/ro-crate-metadata-slang-survey.xlsx', false);
 
-  const corpus = collector.newObject(collector.dataDir);
-  const repositoryObjects = [];
   corpus.mintArcpId();
-  corpus.crate.root['conformsTo'] = { '@id': languageProfileURI('Collection') };
-  const corpusCrate = corpus.crate;
-  for (let item of corpusCrate.getGraph()) {
+  const arcpId = corpus.crate.root['@id'];
+
+  corpus.crate = workbook.crate;
+
+  // Apply metadata after assigning the crate
+  corpus.crate.root['@id'] = arcpId;
+  corpus.crate.addProfile(languageProfileURI("Collection"));
+  const repositoryObjects = [];
+  
+  for (let item of corpus.crate.getGraph()) {
     const itemType = item['@type'];
     if (itemType.includes('RepositoryObject')) {
       repositoryObjects.push(item);

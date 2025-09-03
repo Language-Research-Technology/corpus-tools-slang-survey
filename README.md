@@ -20,6 +20,14 @@ npm install
 
 ## Usage
 
+Base data:
+ro-crate-metadata.json
+
+The corpus tool expects the following data:
+- `ro-crate-metadata-slang-survey.xlsx`
+- `CSV` folder with the 14 `.csv` files
+- Original spreadsheet data for the Slang Survey
+
 Create a file named `make_run.sh` containing the following data:
 
 ```

@@ -13,7 +13,7 @@ NAMESPACE=default
 CORPUS_NAME=default
 DATA_DIR=${BASE_DATA_DIR}/override
 TEMP_DIR=${BASE_TMP_DIR}
-TEMPLATE_DIR=./template
+TEMPLATE_DIR=${BASE_DATA_DIR}
 DEBUG=false
 
 .DEFAULT_GOAL := repo
@@ -25,6 +25,7 @@ repo :
 		-r "${REPO_OUT_DIR}" \
 		-d "${DATA_DIR}" \
 		-D ${DEBUG} \
+		-x "${BASE_DATA_DIR}"/ro-crate-metadata-slang-survey.xlsx \
 		-p "${TEMP_DIR}" -z "${REPO_SCRATCH_DIR}"
 
 
