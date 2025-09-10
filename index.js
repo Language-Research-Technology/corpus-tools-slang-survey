@@ -22,10 +22,12 @@ async function main() {
 
   for (let item of corpus.crate.getGraph()) {
     const itemType = item['@type'];
+    // Repository objects have type RepositoryObject
     if (itemType.includes('RepositoryObject')) {
       repositoryObjects.push(item);
     }
-    if (itemType.includes('Person') && item['custom:currentLocation']) {
+    // Research participants have type Person and @id starting with #A followed by 4 digits
+    if (itemType.includes('Person') && /^#A\d\d\d\d/.test(item['@id'])) {
       researchParticipants.push(item);
     }
   }
