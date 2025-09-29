@@ -55,8 +55,8 @@ async function main() {
         }
     }
 
+    // Add geo data to research participants based on their postcodes
     const geojson = JSON.parse(fs.readFileSync('./data/POA_2021_AUST_GDA2020.geojson', 'utf-8'));
-    // const poaCodes = geojson.features.map(f => f.properties.POA_CODE21);
     for (let participant of researchParticipants) {
         const currentLocation = participant['custom:currentLocation'];
         // Process currentLocation
@@ -65,8 +65,6 @@ async function main() {
             const { geometry } = geojson.features.find(f => f.properties.POA_CODE21 === participantPostcode) ?? { geometry: null }
             if (geometry) {
                 participant['custom:currentLocationPostcode'] = { "@id": `#pl${participantPostcode}` };
-                // console.log(geojsonToWKT(geometry))
-
                 // Add Place and Geometry entities to the crate
                 corpus.crate.addEntity({
                     "@id": `#pl${participantPostcode}`,
@@ -91,7 +89,6 @@ async function main() {
             const { geometry } = geojson.features.find(f => f.properties.POA_CODE21 === participantPostcode) ?? { geometry: null }
             if (geometry) {
                 participant['custom:childhoodLocationPostcode'] = { "@id": `#pl${participantPostcode}` };
-                // console.log(geojsonToWKT(geometry))
                 // Add Place and Geometry entities to the crate if not already added
                 if (!corpus.crate.getEntity({ "@id": `#pl${participantPostcode}` })) {
                     corpus.crate.addEntity({
@@ -125,7 +122,9 @@ async function main() {
         item['@id'] = root['@id'];
     }
 
+    // Output the modified crate for inspection
     fs.writeFileSync('ro-crate-metadata-out.json', JSON.stringify(corpus.crate, null, 2));
+
     if (collector.opts.multiple) {
         // For distributed crate, the original crate in `corpus` won't be saved,
         // it gets broken up into multiple objects and a new top level object is created,

@@ -2,6 +2,8 @@
 
 Corpus Tools for creating an OCFL repository for the Slang Survey Data Collection.
 
+This corpus tool also uses the [Postal Areas - 2021 - Shapefile](https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/access-and-downloads/digital-boundary-files) data from the Australian Bureau of Statistics to map the postcodes of the collection's research participants. In order to create the geojson file required in the `data` folder for this, see the steps under Usage.
+
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) (v22 or newer needed for oni-ocfl)
@@ -27,6 +29,10 @@ The corpus tool expects the following data in a `data` folder:
 - `ro-crate-metadata-slang-survey.xlsx` containing the metadata in RO-Crate compatible format
 - `CSV` folder with the 14 `.csv` files
 - Original data for the Slang Survey
+- `POA_2021_AUST_GDA2020.geojson`. Run the following to create this file:
+  - Install GDAL: `brew install gdal`
+  - Download `POA_2021_AUST_GDA2020.shp` from [Postal Areas - 2021 - Shapefile](https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/access-and-downloads/digital-boundary-files)
+  - Run `ogr2ogr POA_2021_AUST_GDA2020.geojson POA_2021_AUST_GDA2020.shp`
 
 Create a file named `make_run.sh` containing the following data:
 
