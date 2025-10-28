@@ -162,7 +162,6 @@ async function main() {
                 } else if (propName === 'hasPart' && source['@type'].includes('RepositoryCollection')) {
                     // remove hasPart from any RepositoryCollection
                 } else {
-
                     target[propName] = source[propName].map(v => {
                         if (v['@id']) {
                             if (v['@id'].startsWith("#")) {
@@ -242,6 +241,15 @@ async function main() {
             await colObj.addToRepo();
         }
     } else {
+        // if type is RepositoryObject, add conformsTo RepositoryObject
+        for (let item of corpus.crate.entities()) {
+            const itemType = item['@type'];
+            if (itemType.includes('RepositoryObject')) {
+                if (!item.conformsTo?.length) {
+                    item.conformsTo = conformsTo.RepositoryObject;
+                }
+            }
+        }
         // For single bundled crate, we just add everything to the repo
         await corpus.addToRepo();
     }

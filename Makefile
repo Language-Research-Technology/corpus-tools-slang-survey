@@ -29,7 +29,6 @@ repo :
 		-x "${BASE_DATA_DIR}"/ro-crate-metadata-slang-survey.xlsx \
 		-p "${TEMP_DIR}" -z "${REPO_SCRATCH_DIR}" \
 		--sf \
-		--multiple \
 		--vm "${MODEFILE}"
 
 clean :
