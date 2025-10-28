@@ -26,10 +26,10 @@ Head record data used to build the initial RO-Crate format:
 - `data/ro-crate-metadata.json`
 
 The corpus tool expects the following data in a `data` folder:
-- `ro-crate-metadata-slang-survey.xlsx` containing the metadata in RO-Crate compatible format
-- `CSV` folder with the 14 `.csv` files
-- Original data for the Slang Survey
-- `POA_2021_AUST_GDA2020.geojson`. Run the following to create this file:
+- `ro-crate-metadata-slang-survey.xlsx`: metadata in RO-Crate compatible format
+- `Australian Slang v2_September 5, 2021_deidentified.csv`: deidentified version of the original data
+- 14 `.csv` files, e.g. `Item01-VeryGood.csv`
+- `POA_2021_AUST_GDA2020.geojson`: geomapping data for the postcodes provided by the research participants within the collection. Or, run the following to create this file:
   - Install GDAL: `brew install gdal`
   - Download `POA_2021_AUST_GDA2020.shp` from [Postal Areas - 2021 - Shapefile](https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/access-and-downloads/digital-boundary-files)
   - Run `ogr2ogr POA_2021_AUST_GDA2020.geojson POA_2021_AUST_GDA2020.shp`
@@ -43,7 +43,7 @@ make BASE_DATA_DIR=data \
  REPO_OUT_DIR=/opt/storage/oni/ocfl \
  REPO_SCRATCH_DIR=/opt/storage/oni/scratch-ocfl \
  BASE_TMP_DIR=temp \
- NAMESPACE=slang-survey \
+ NAMESPACE=hdl10.26180~30102115 \
  CORPUS_NAME=slang-survey \
  DATA_DIR=data \
 ```
