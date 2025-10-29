@@ -3,4 +3,6 @@ make_run.sh
 node_modules
 package-lock.json
 temp
+data/.siegfried.json
+data/POA_2021_AUST_GDA2020.geojson
 ro-crate-metadata-out.json

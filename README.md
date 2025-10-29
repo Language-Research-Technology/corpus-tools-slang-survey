@@ -20,13 +20,18 @@ cd corpus-tools-slang-survey
 npm install
 ```
 
+## License
+
+The Australian Slang Survey Data collection files within this repository are under the following license: [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+
 ## Usage
 
 Head record data used to build the initial RO-Crate format:
 - `data/ro-crate-metadata.json`
 
-The corpus tool expects the following data in a `data` folder:
+The corpus tool expects the following data in the `data` folder:
 - `ro-crate-metadata-slang-survey.xlsx`: metadata in RO-Crate compatible format
+- `Slang_Data_Provenance.pdf`: provenance document for the Slang Data collection. 
 - `Australian Slang v2_September 5, 2021_deidentified.csv`: deidentified version of the original data
 - 14 `.csv` files, e.g. `Item01-VeryGood.csv`
 - `POA_2021_AUST_GDA2020.geojson`: geomapping data for the postcodes provided by the research participants within the collection. Or, run the following to create this file:
