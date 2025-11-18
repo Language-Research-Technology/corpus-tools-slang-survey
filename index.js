@@ -122,6 +122,29 @@ async function main() {
         item['@id'] = root['@id'];
     }
 
+    // Deduplicate array-valued properties (remove repeated { "@id": "..." } entries)
+    function dedupeArray(arr) {
+        const seen = new Set();
+        return arr.filter(it => {
+            if (it && typeof it === 'object' && it['@id']) {
+                if (seen.has(it['@id'])) return false;
+                seen.add(it['@id']);
+                return true;
+            }
+            const key = JSON.stringify(it);
+            if (seen.has(key)) return false;
+            seen.add(key);
+            return true;
+        });
+    }
+    for (const ent of corpus.crate.entities()) {
+        for (const p of Object.keys(ent)) {
+            if (Array.isArray(ent[p])) {
+                ent[p] = dedupeArray(ent[p]);
+            }
+        }
+    }
+
     // Output the modified crate for inspection
     fs.writeFileSync('ro-crate-metadata-out.json', JSON.stringify(corpus.crate, null, 2));
 
