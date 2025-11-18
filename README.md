@@ -31,9 +31,11 @@ Head record data used to build the initial RO-Crate format:
 
 The corpus tool expects the following data in the `data` folder:
 - `ro-crate-metadata-slang-survey.xlsx`: metadata in RO-Crate compatible format
-- `Slang_Data_Provenance.pdf`: provenance document for the Slang Data collection. 
+- `Slang_Data_Provenance.pdf`: provenance document for the Slang Data collection
 - `Australian Slang v2_September 5, 2021_deidentified.csv`: deidentified version of the original data
 - 14 `.csv` files, e.g. `Item01-VeryGood.csv`
+- `AllItems.csv`: combined version of the 14 files
+- `ParticipantDemographics.csv`: Participant demographics metadata file
 - `POA_2021_AUST_GDA2020.geojson`: geomapping data for the postcodes provided by the research participants within the collection. Or, run the following to create this file:
   - Install GDAL: `brew install gdal`
   - Download `POA_2021_AUST_GDA2020.shp` from [Postal Areas - 2021 - Shapefile](https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/access-and-downloads/digital-boundary-files)
