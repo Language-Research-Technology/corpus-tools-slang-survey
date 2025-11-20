@@ -19,6 +19,7 @@ git clone https://github.com/Language-Research-Technology/corpus-tools-slang-sur
 cd corpus-tools-slang-survey
 npm install
 ```
+NOTE: `POA_2021_AUST_GDA2020.geojson` is not included in this repository due to its size. Get this from LDaCA Files or see the steps in Usage below to create it.
 
 ## License
 
